@@ -1,4 +1,4 @@
-\# Delegated vs Application Permissions
+# Delegated vs Application Permissions
 
 
 
@@ -6,9 +6,9 @@ Microsoft Graph supports two permission models:
 
 
 
-\- Delegated permissions
+- Delegated permissions
 
-\- Application permissions
+- Application permissions
 
 
 
@@ -16,11 +16,11 @@ The authentication model determines how the application accesses Microsoft resou
 
 
 
-\---
+---
 
 
 
-\## Delegated Permissions
+## Delegated Permissions
 
 
 
@@ -56,11 +56,11 @@ Examples:
 
 
 
-\- User.Read
+- User.Read
 
-\- Mail.Read
+- Mail.Read
 
-\- Group.Read.All
+- Group.Read.All
 
 
 
@@ -80,11 +80,11 @@ Advantages:
 
 
 
-\- Supports MFA
+- Supports MFA
 
-\- Uses existing user permissions
+- Uses existing user permissions
 
-\- Easier for testing
+- Easier for testing
 
 
 
@@ -92,17 +92,17 @@ Limitations:
 
 
 
-\- Requires user interaction
+- Requires user interaction
 
-\- Cannot run fully unattended
-
-
-
-\---
+- Cannot run fully unattended
 
 
 
-\## Application Permissions
+---
+
+
+
+## Application Permissions
 
 
 
@@ -138,11 +138,11 @@ Examples:
 
 
 
-\- User.Read.All
+- User.Read.All
 
-\- Directory.Read.All
+- Directory.Read.All
 
-\- DeviceManagementManagedDevices.Read.All
+- DeviceManagementManagedDevices.Read.All
 
 
 
@@ -154,11 +154,11 @@ PowerShell example:
 
 Connect-MgGraph `
 
-\-ClientId "<ClientID>" `
+-ClientId "<ClientID>" `
 
-\-TenantId "<TenantID>" `
+-TenantId "<TenantID>" `
 
-\-CertificateThumbprint "<Thumbprint>"
+-CertificateThumbprint "<Thumbprint>"
 
 ```
 
@@ -168,9 +168,9 @@ Advantages:
 
 
 
-\- Fully automated
+- Fully automated
 
-\- Suitable for background services
+- Suitable for background services
 
 
 
@@ -178,17 +178,17 @@ Limitations:
 
 
 
-\- Usually requires admin consent
+- Usually requires admin consent
 
-\- Higher security risk if over-permissioned
-
-
-
-\---
+- Higher security risk if over-permissioned
 
 
 
-\## Permission comparison
+---
+
+
+
+## Permission comparison
 
 
 
@@ -208,11 +208,11 @@ Limitations:
 
 
 
-\---
+---
 
 
 
-\## Real-world examples
+## Real-world examples
 
 
 
