@@ -1,214 +1,175 @@
-# Microsoft Graph vs AzureAD vs MSOnline
+# Service Principals and Certificates
 
-Microsoft has historically provided several PowerShell modules for Microsoft 365 and Azure administration.
+Service Principals allow applications and automation to authenticate to Microsoft services without requiring a user account.
 
-Older modules such as MSOnline and AzureAD are being replaced by Microsoft Graph.
+They are commonly used with Microsoft Graph for unattended automation.
 
 ---
 
-## Evolution of Microsoft Administration
+## What is a Service Principal?
+
+A Service Principal is an identity created for an application inside Entra ID.
+
+Unlike users:
+
+- does not have a password
+- does not require MFA
+- used by applications and automation
+- can receive permissions
+
+---
+
+## Authentication Flow
 
 ```text
-MSOnline
-    ↓
-
-AzureAD
-    ↓
-
+PowerShell Script
+        ↓
+Service Principal
+        ↓
+Certificate
+        ↓
+Entra ID
+        ↓
+Access Token
+        ↓
 Microsoft Graph
 ```
 
 ---
 
-## MSOnline Module
+## Components Required
 
-MSOnline was one of the earliest modules used for Microsoft cloud administration.
+| Component | Purpose |
+|---|---|
+| App Registration | Defines the application |
+| Service Principal | Identity of the application |
+| Certificate | Authentication mechanism |
+| Permissions | Define access |
+| Access Token | Used for Graph access |
+
+---
+
+## Creating a Self-Signed Certificate
 
 Example:
 
 ```powershell
-Connect-MsolService
-
-Get-MsolUser
+$cert = New-SelfSignedCertificate `
+-Subject "CN=GraphAutomation" `
+-CertStoreLocation "Cert:\CurrentUser\My"
 ```
 
-Typical capabilities:
+Display certificate:
 
-- User administration
-- Licensing
-- Basic directory management
+```powershell
+Get-ChildItem Cert:\CurrentUser\My
+```
 
-Limitations:
+Example output:
 
-- Legacy authentication
-- Limited functionality
-- Separate APIs
-- No modern Graph capabilities
+```text
+Subject                 Thumbprint
+-------                 ----------
+CN=GraphAutomation      A7F5B2D8E91C...
+```
 
 ---
 
-## AzureAD Module
+## Upload Certificate to App Registration
 
-AzureAD improved cloud administration capabilities.
+Steps:
+
+```text
+Entra ID
+   ↓
+App registrations
+   ↓
+Your Application
+   ↓
+Certificates & secrets
+   ↓
+Certificates
+   ↓
+Upload certificate
+```
+
+---
+
+## Grant Graph Permissions
+
+Examples:
+
+- User.Read.All
+- Group.Read.All
+- DeviceManagementManagedDevices.Read.All
+
+Administrator grants consent:
+
+```text
+API Permissions
+     ↓
+Grant admin consent
+```
+
+---
+
+## Connect using Certificate Authentication
 
 Example:
 
 ```powershell
-Connect-AzureAD
-
-Get-AzureADUser
+Connect-MgGraph `
+-ClientId "<ApplicationID>" `
+-TenantId "<TenantID>" `
+-CertificateThumbprint "<Thumbprint>"
 ```
-
-Typical capabilities:
-
-- Users
-- Groups
-- Applications
-- Service principals
-
-Limitations:
-
-- Partial API coverage
-- Different command syntax
-- Not aligned with newer Microsoft services
 
 ---
 
-## Microsoft Graph PowerShell SDK
+## Client Secret vs Certificate
 
-Microsoft Graph provides a unified API and modern PowerShell module.
-
-Example:
-
-```powershell
-Connect-MgGraph
-
-Get-MgUser
-```
-
-Capabilities:
-
-- Entra ID
-- Intune
-- Teams
-- Exchange Online
-- SharePoint
-- OneDrive
-- Security services
-- Reports
-
-Advantages:
-
-- Modern authentication
-- Unified API
-- Broader service coverage
-- Better automation support
+| Feature | Client Secret | Certificate |
+|---|---:|---:|
+| Security | Lower | Higher |
+| Expiration | Short | Longer |
+| Rotation | Manual | Easier |
+| Recommended | No | Yes |
 
 ---
 
-## Command Comparison
+## Managed Identity Comparison
 
-| Task | MSOnline | AzureAD | Graph |
-|---|---:|---:|---:|
-| Connect | Connect-MsolService | Connect-AzureAD | Connect-MgGraph |
-| Get users | Get-MsolUser | Get-AzureADUser | Get-MgUser |
-| Get groups | Get-MsolGroup | Get-AzureADGroup | Get-MgGroup |
-| Get devices | Limited | Get-AzureADDevice | Get-MgDevice |
-| Intune support | No | Limited | Full |
-| Teams support | No | Limited | Yes |
-| Modern auth | Limited | Partial | Yes |
-
----
-
-## Authentication Comparison
-
-MSOnline:
-
-```powershell
-Connect-MsolService
-```
-
-AzureAD:
-
-```powershell
-Connect-AzureAD
-```
-
-Graph:
-
-```powershell
-Connect-MgGraph -Scopes "User.Read.All"
-```
-
-Graph authentication supports:
-
-- OAuth 2.0
-- OIDC
-- Service Principals
-- Certificates
-- Managed Identity
+| Method | Recommended Use |
+|---|---|
+| Client Secret | Small labs |
+| Certificate | Enterprise automation |
+| Managed Identity | Azure resources |
 
 ---
 
 ## Real-world Example
 
-Legacy approach:
+Nightly automation:
 
 ```text
-Script
-   ↓
-AzureAD module
-   ↓
-Users only
-```
-
-Modern approach:
-
-```text
-Script
-   ↓
+Scheduled Task
+       ↓
+PowerShell Script
+       ↓
+Certificate Authentication
+       ↓
 Microsoft Graph
-   ↓
-Users
-Groups
-Devices
-Intune
-Reports
-Teams
-```
-
----
-
-## Migration Considerations
-
-When moving from AzureAD or MSOnline:
-
-- Cmdlet names change
-- Authentication changes
-- Permissions become scope-based
-- Graph may return different properties
-- Some scripts require redesign
-
-Example:
-
-Old:
-
-```powershell
-Get-AzureADUser
-```
-
-New:
-
-```powershell
-Get-MgUser
+       ↓
+Export Intune Device Report
+       ↓
+Send Email
 ```
 
 ---
 
 ## Key Takeaways
 
-- MSOnline is legacy
-- AzureAD is being replaced
-- Microsoft Graph is Microsoft's strategic direction
-- Graph offers broader service integration
-- Modern automation should use Graph whenever possible
+- Service Principals are application identities
+- Certificates are preferred over secrets
+- Application permissions support automation
+- Managed Identity is preferred inside Azure
