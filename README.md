@@ -1,3 +1,10 @@
+![PowerShell](https://img.shields.io/badge/PowerShell-7+-blue)
+![Microsoft Graph](https://img.shields.io/badge/Microsoft-Graph-green)
+![Entra ID](https://img.shields.io/badge/Entra-ID-blue)
+![Intune](https://img.shields.io/badge/Intune-orange)
+![License](https://img.shields.io/badge/license-MIT-yellow)
+
+
 # Microsoft Graph PowerShell Admin Labs
 
 Practical Microsoft Graph examples for Microsoft 365, Entra ID and Intune administration using PowerShell and modern authentication methods.
