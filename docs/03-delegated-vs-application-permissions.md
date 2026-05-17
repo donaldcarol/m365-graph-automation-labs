@@ -36,15 +36,15 @@ The application acts on behalf of the authenticated user.
 
 User
 
-&#x20;  ↓
+  ↓
 
 Application
 
-&#x20;  ↓
+  ↓
 
 Graph API
 
-&#x20;  ↓
+  ↓
 
 Resource
 
@@ -118,15 +118,15 @@ The application acts independently.
 
 Application
 
-&#x20;     ↓
+     ↓
 
 Service Principal
 
-&#x20;     ↓
+     ↓
 
 Graph API
 
-&#x20;     ↓
+     ↓
 
 Resource
 
