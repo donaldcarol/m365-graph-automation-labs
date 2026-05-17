@@ -123,6 +123,23 @@ Export-Csv users.csv -NoTypeInformation
 ```
 
 ---
+## First Lab Scripts
+
+Run the scripts in this order:
+
+```powershell
+.\scripts\01-connect-interactive.ps1
+.\scripts\02-get-users.ps1
+.\scripts\03-get-groups.ps1
+.\scripts\04-get-devices.ps1
+```
+Required delegated permissions:
+
+- User.Read.All
+- Group.Read.All
+- Device.Read.All
+
+---
 
 ## Skills Demonstrated
 
