@@ -133,9 +133,9 @@ Run the scripts in this order:
 .\scripts\02-get-users.ps1
 .\scripts\03-get-groups.ps1
 .\scripts\04-get-devices.ps1
-.\scripts\05-get-intune-managed-devices.ps1
+.\scripts\05-get-intune-managed-devices.ps1              # optional - requires Intune license
 .\scripts\06-export-users-to-csv.ps1
-.\scripts\07-export-intune-devices-to-csv.ps1
+.\scripts\07-export-intune-devices-to-csv.ps1            # optional - requires Intune license
 ```
 
 Required delegated permissions:   
@@ -149,7 +149,17 @@ Required delegated permissions:
 
 The Intune scripts require an active Intune license.
 
-If the tenant only has Office 365 licenses, user and group scripts can still be tested, but Intune managed device scripts will fail with authorization or licensing errors.
+If the tenant only has Office 365 licenses, user and group scripts can still be tested, but Intune managed device scripts will fail with authorization or licensing errors.  
+Works with Office 365 tenant:
+- users
+- groups
+- Entra ID devices
+- CSV exports
+
+Requires Intune / M365 license:
+- Intune managed devices
+- Intune device compliance
+- Intune device actions
 
 ---
 
