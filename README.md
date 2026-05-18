@@ -145,6 +145,14 @@ Required delegated permissions:
 - DeviceManagementManagedDevices.Read.All
 ---
 
+## Optional Intune Scripts
+
+The Intune scripts require an active Intune license.
+
+If the tenant only has Office 365 licenses, user and group scripts can still be tested, but Intune managed device scripts will fail with authorization or licensing errors.
+
+---
+
 ## Skills Demonstrated
 
 - Microsoft Graph
