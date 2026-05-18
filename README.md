@@ -76,7 +76,11 @@ microsoft-graph-powershell-admin-labs/
 │   ├── 04-get-devices.ps1
 │   ├── 05-get-intune-managed-devices.ps1
 │   ├── 06-export-users-to-csv.ps1
-│   └── 07-export-devices-to-csv.ps1
+│   ├── 07-export-devices-to-csv.ps1
+|   ├── 08-export-groups-to-csv.ps1
+|   ├── 09-export-entra-devices-to-csv.ps1
+|   ├── 10-check-current-graph-context.ps1
+|   ├── 11-find-disabled-users.ps1
 │
 └── examples/
 ```
@@ -136,6 +140,10 @@ Run the scripts in this order:
 .\scripts\05-get-intune-managed-devices.ps1              # optional - requires Intune license
 .\scripts\06-export-users-to-csv.ps1
 .\scripts\07-export-intune-devices-to-csv.ps1            # optional - requires Intune license
+.\scripts\08-export-groups-to-csv.ps1
+.\scripts\09-export-entra-devices-to-csv.ps1
+.\scripts\10-check-current-graph-context.ps1
+.\scripts\11-find-disabled-users.ps1
 ```
 
 Required delegated permissions:   
