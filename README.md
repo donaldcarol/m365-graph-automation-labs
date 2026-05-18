@@ -123,6 +123,7 @@ Export-Csv users.csv -NoTypeInformation
 ```
 
 ---
+
 ## First Lab Scripts
 
 Run the scripts in this order:
@@ -132,13 +133,16 @@ Run the scripts in this order:
 .\scripts\02-get-users.ps1
 .\scripts\03-get-groups.ps1
 .\scripts\04-get-devices.ps1
+.\scripts\05-get-intune-managed-devices.ps1
+.\scripts\06-export-users-to-csv.ps1
+.\scripts\07-export-intune-devices-to-csv.ps1
 ```
-Required delegated permissions:
 
+Required delegated permissions:   
 - User.Read.All
 - Group.Read.All
 - Device.Read.All
-
+- DeviceManagementManagedDevices.Read.All
 ---
 
 ## Skills Demonstrated
