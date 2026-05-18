@@ -6,6 +6,8 @@ Gets Intune managed devices using Microsoft Graph.
 DeviceManagementManagedDevices.Read.All
 #>
 
+Connect-MgGraph -Scopes "DeviceManagementManagedDevices.Read.All"
+
 $devices = Get-MgDeviceManagementManagedDevice -All -Property `
     Id,
     DeviceName,
