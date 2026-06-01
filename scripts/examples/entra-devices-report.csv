@@ -1,0 +1,5 @@
+"DisplayName","OperatingSystem","OperatingSystemVersion","TrustType","AccountEnabled","ApproximateLastSignInDateTime"
+"win11-22","Windows","10.0.26100.6584","ServerAd","True","21.02.2026 16:26:44"
+"Server2025AD1","Windows","10.0.26100.7462","ServerAd","True","09.07.2025 19:35:35"
+"WIN11DOMAIN","Windows","10.0.26100.4946","AzureAd","True","04.04.2026 17:17:28"
+"DC2","Windows","10.0.26100.7171","ServerAd","True","27.08.2025 16:46:44"
